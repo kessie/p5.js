@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Getting Started with p5.js</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- jQuery -->
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+		<!-- bootstrap -->
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">	
+		
+		<!-- parse functions -->
+		<script language="javascript" src="../parsefunctions.js"></script>
+		
+		<!-- google prettify -->
+		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+		<style type="text/css"> 
+			body {padding: 0; margin: 0} 
+			canvas { border: 1px solid #ccc; margin-bottom: 25px } 
+			.prettyprint ol.linenums > li { list-style-type: decimal; }
+		</style> 
+
+	</head>
+	<body>
+		<nav>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<ul class="nav navbar-nav">
+						<li><a href="../FYP/index.html">
+						<span class="glyphicon glyphicon-chevron-left"></span> 
+						Topics
+						</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+        </nav>
+		<div class="container" style="margin-top: 75px">
+
+			<h1>Introduction to p5.js</h1>
+			<p class="text-muted">By Kessiena (<a href="http://p5js.org/get-started/" target="_blank">http://p5js.org/get-started</a>)</p>
+			
+			<hr />
+<p><a href="http://p5js.org" target="_blank">p5.js</a> is a JavaScript library that starts with the original goal of Processing - to makecoding accessible for artists, designers, educators and beginners. It is designed for artists, developers and media connoisseurs to create interactive art, games, data visualizations and animations. Because p5.js is written in Javascript, it works very well on the web and can interact well with existing web-based technologies such as sound, video, webcam input, etc.</p>
+
+<p>For novices in programming, learning p5.js is a great place to start. It is designed to make coding accessible for beginners and includes a supportive online community. Experienced programmers on the other hand, can achieve great things with p5.js.</p>
+
+<p>Computer programming is the new literacy of the digital age and it is important that anyone who uses a computer should learn how to "talk" to a computer. According to Doug Rushkoff's book, &quot;<a href="http://www.rushkoff.com/program-or-be-programmed/" target="_blank">Program or Be Programmed</a>&quot; he talks about how the society is becoming increasingly dependent on machines, yet decreasingly capable of making or even using them effectively. Programming is a very important skill beside its usefulness in computer interaction, it teaches you how to think &quot;<a href="https://www.youtube.com/watch?v=5Z1gfgM7kzo&t=1m19s" target="_blank">Everyone should learn how to program a computer because it teaches you how to think.</a>&quot; (Steve Jobs).</p>
+
+<p>In P5.js, there is need to download a code editor, which is where all code is written. P5.js is currently building a code editor designed to work specifically with P5.js, In this case however, we shall be doing all coding and running on the interactive website to make it easier for novice programmers.</p>
+<h2>Using jsFiddle</h2>
+<p>JSFiddle is an online Integrated DEvelopment Environment(IDE), that is hosted in a web browser allowing users to create and execute code written in javascript with the option of using one of the java frameworks or no frameworks, html ad css. JSFiddle also shows how javascript, css and html work together but in this case we are only concerned with writing and executing code in javascript.</p>
+
+<p> As can be seen in the example below the jsfiddle example has been embedded in the webpage. In other to run that example the following steps are taken:
+
+<ul>
+	<li>Click on the "edit in jsfiddle" button at the top right corner of the embedded page, this opens the jsfiddle editor on a new webpage</li>
+	<li>After the fiddle editor has been opened, click on the run button to run code in javascript section.</li> 
+</ul>
+<p> As can be seen in the jsfiddle webpage there are four different sections to write code, html, css, javascript and the result. As explained earlier on there is only need to write and edit code in the javascript section as p5.js makes use of the javascript library. </p>
+
+</p>
+
+<h2>Writing our First Simple Program</h2>
+
+<p>There are two main functions used when writing a program in P5.js. The <code>setup()</code> block runs only once and is normally used for initialization(setting up a starting value of a variable) or for greating a program that needs no loop. The <code>draw()</code> block runs repeatedly and is used for animation. </p>
+
+<p> A function can be defined as a named section of a program that performs a specific task. In this sense, a function is basically a type of procedure or routine which performs some operation but returns no value. Although most programs have a prewritten set of functions in a library, it is possible for new functions to be written to perform specific tasks.</p>
+
+<p> An example of some prewritten functions in p5.js are;</p>
+<ul>
+	<li>arc()</li>
+	<li>ellipse()</li>
+	<li>line()</li>
+</ul>
+<div id="item" class="item-wrapper apidocs" style="display: block;">
+<h3> ellipse() </h3>
+<!--<div class="example">-->
+<h2> Example </h2>
+<p> <iframe width="100%" height="300" src="//jsfiddle.net/kessy/fbnpv0k8/1/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+</p>    
+<h2> Description </h2>
+<p> An ellipse is an oval shape. As can be seen from the function there are four parameters which help set location, width and height of the shape </p>
+
+<h2> Syntax </h2>
+<pre class="prettyprint linenums">
+  ellipse(x, y, width, height);
+</pre>  
+
+<h2> Parameters </h2>
+<ul>
+	<li>x-coordinate</li>
+	<li>y-coordinate</li>
+	<li>width of ellipse</li>
+	<li>height of ellipse</li>
+</ul>
+
+<a class="btn btn-primary" href="../FYP/drawing.html">Next: Drawing Shapes</a>
+
+</body>
+</html>

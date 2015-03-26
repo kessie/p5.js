@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Drawing with P5.js</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- jQuery -->
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+		<!-- bootstrap -->
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">	
+		
+		<!-- p5js -->
+		<script src="//cdnjs.cloudflare.com/ajax/libs/p5.js/0.2.22/p5.min.js"></script>
+		
+		<!-- parse functions -->
+		<script language="javascript" src="../parsefunctions.js"></script>
+		
+		<!-- google prettify -->
+		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+
+		<style type="text/css"> 
+			body {padding: 0; margin: 0} 
+			canvas { border: 1px solid #ccc; margin-bottom: 25px } 
+			.prettyprint ol.linenums > li { list-style-type: decimal; }
+			iframe { border: 1px solid #ccc; }
+		</style> 
+
+	</head>
+	<body>
+		
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<ul class="nav navbar-nav">
+						<li><a href="../FYP/index.html"><span class="glyphicon glyphicon-chevron-left"></span> Topics</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="container" style="margin-top: 75px">
+
+			<h1>Drawing Shapes in p5.js</h1>
+						
+			<hr />
+
+<p>P5.js generally refers to a program as a sketch.In this section we shall be learning how to draw simple shapes using code. P5.js supports the following shapes: </p>
+
+
+<ul>
+	<li><a href="http://p5js.org/reference/#/p5/ellipse" target="_blank">Ellipse</a></li>
+	<li><a href="http://p5js.org/reference/#/p5/rect" target="_blank">Rectangle</a></li>
+	<li><a href="http://p5js.org/reference/#/p5/triangle" target="_blank">Triangle</a></li>
+	<li><a href="http://p5js.org/reference/#/p5/line" target="_blank">Line</a></li>
+	<li><a href="http://p5js.org/reference/#/p5/point" target="_blank">Point</a></li>
+	<li><a href="http://p5js.org/reference/#/p5/quad" target="_blank">Quadrilateral</a></li>
+	<li><a href="http://p5js.org/reference/#/p5/arc" target="_blank">Arc</a></li>
+</ul>
+
+<p>In the <a href="../FYP/gettingstarted/">previous tutorial</a>, we learned how to draw a circle (or an ellipse) using jsfiddle. In this tutorial, we will expand on this by learning some general syntax used when creating P5.js sketches, drawing shapes and choosing colors.</p>
+
+<h2>Creating an Empty Sketch with jsfiddle</h2>
+
+<p>To reduce the hassle of having several pages open in order to run the code, we use jsfiddle to create the empty sketch. jsfiddle provides an editor where code can be edited as well as its results displayed. Just like in the <a href="../FYP/gettingstarted/">previous tutorial</a>, we only edit the code in the javascript section of jsfiddle editor. Below are snippets of the code contained in jsfiddle editor:</p>
+
+<pre class="prettyprint linenums">function setup() {
+  // put setup code here
+}
+
+function draw() {
+  // put drawing code here
+}</pre> 
+
+<p>P5.js includes <a href="http://p5js.org/reference/" target="_blank">many functions</a> (not just <code>setup()</code> and <code>draw()</code>). Another function <code>createCanvas()</code> for instance would be added inside of our <code>setup()</code>. This function is used to determine how big we want our sketch to be:</p>
+
+<pre class="prettyprint linenums">function setup() {
+  // set canvas size
+  createCanvas(600, 600);
+}
+
+function draw() {
+  // put drawing code here
+  background(102);
+}</pre>
+
+<p>The <code><a href="http://p5js.org/reference/#/p5/createCanvas" target="_blank">createCanvas()</a></code> function requires two parameters: width and height. According to the example above, this sketch will be 600 pixels wide and 600 pixels high. Parameters are separated by commas. Comments can also be added when writing a sketch and they are done like this <code>// set canvas size</code> to our code. Adding a comment does not affect the actual code by any means, as they are ignored by our sketch when it runs, but they are useful as it helps us, as programmers, to understand what the code is doing.</p>
+
+<p> In the function <code>draw()</code>, the <code><a href="http://p5js.org/reference/#/p5/background" target="_blank">background()</a></code> function sets color used for the background of the p5.js canvas. It requires one parameter if programmer wants the background to be different greylevels and three parameters representing RGB levels for a colored background.</p>
+
+<p>Next, we will draw an rectangle inside of the <code>draw()</code> function. The <code>rec()</code> function requires four parameters: x coordinate, y coordinate, width and height.</p>
+
+<pre class="prettyprint linenums">function setup() {
+  // set canvas size
+  createCanvas(600, 600);
+}
+
+function draw() {
+  // draw a rectangle
+  background(102);
+  rect(30, 30, 55, 55);  
+}</pre>
+
+<p>To test code we run in jsfiddle editor, this is done by clicking the "edit in jsfiddle" button at the top right corner of embedded webpage.:</p>
+
+<p><iframe width="100%" height="300" src="//jsfiddle.net/kessy/hqu25926/embedded/"></iframe></p>
+
+<h2>Color: white, black &amp; grey</h2>
+
+<p>In P5.js, colors are determined by numbers, just like in the previous example where background color was set. For the example below, we use the <code>fill()</code> p5.js function to decide what shade of grey we would like the circle to be. In order to achieve this, we will need to provide the <code>fill()</code> function with a number from 0 - 255.</p>
+
+<ul>
+	<li><code>fill(0);</code> // Black
+	<li><code>fill(255);</code> // White
+	<li><code>fill(125);</code> // Grey
+</ul>
+
+<p>For example to create a grey ellipse, use the following code:</p>
+
+<pre class="prettyprint linenums">function setup() {
+  // set canvas size
+  createCanvas(200, 200);
+}
+
+function draw() {
+  // set a fill color
+  fill(125);
+
+  // draw a circle
+  ellipse(100, 100, 150, 150);  
+}</pre>
+
+<p> Changes can be made to the parameter in the <code>fill()</code> function which would in turn change the ellipse's fill color. To change parameter in <code>fill()</code>, edit code in jsfiddle by clicking the top right button "edit in jsfiddle" in embedded page below.</p>
+<!-- add jsfiddle grey ellipse code like above here-->
+<p> <iframe width="100%" height="300" src="//jsfiddle.net/kessy/o1rp24ba/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe></p>
+
+<h2>Color: all colors</h2>
+
+<p>To change the circle to different colors like red, green, blue or purple, the <code>fill()</code> function would need three parameters (red, green, blue). For example, <code>fill(10, 100, 100);</code> would allow us to make an ellipse that is greenish-blue. This can be compared to mixing paint .</p>
+
+<pre class="prettyprint linenums">function setup() {
+  // set canvas size
+  createCanvas(200, 200);
+}
+
+function draw() {
+  // set a fill color (red, green, blue)
+  fill(0, 180, 180);
+
+  // draw a circle
+  ellipse(100, 100, 150, 150);  
+}</pre>
+
+<p>To mix these three colors i.e. red, blue and green, the parameters of fill should be changed in order to create different colors.</p>
+
+<iframe width="100%" height="300" src="//jsfiddle.net/kessy/fupqv4rx/1/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<h2>Changing the outline properties</h2>
+
+<p> The outline is similar to a stroke and as the name suggests an outline is a line indicating the shape of an object in a sketch. Outline properties of any shape can easily be changed. By default, our ellipse from previous examples has a black stroke that is 1 pixel thick. To change to a blue stroke 10 pixels thick, Try the following in your code editor:</p>
+
+<pre class="prettyprint linenums">function setup() {
+  // set canvas size
+  createCanvas(200, 200);
+}
+
+function draw() {
+  // set a fill color (red, green, blue)
+  fill(0, 180, 180);
+  
+  // set stroke properties
+  stroke(0, 0, 255);//sets stroke color
+  strokeWeight(10);// sets stroke thickness
+  
+  // draw a circle
+  ellipse(100, 100, 150, 150);  
+}</pre>
+
+<iframe width="100%" height="300" src="//jsfiddle.net/kessy/y1zfmje3/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<p>The stroke can be completely removed, by simply specifying using code <code>noStroke();</code> as seen in below.</p>
+<p>In jsfiddle editor for example above delete lines of code which set stroke properties and replace with <code>noStroke();</code></p>
+
+<pre class="prettyprint linenums">function setup() {
+  // set canvas size
+  createCanvas(200, 200);
+}
+
+function draw() {
+  // set a fill color (red, green, blue)
+  fill(0, 180, 180);
+  
+  // remove stroke
+  noStroke();//eliminates stroke
+  
+  // draw a circle
+  ellipse(100, 100, 150, 150);  
+}</pre>
+
+<h2>Experimenting with other shapes</h2>
+
+<p>Drawing circles and rectangles are quite easy but there are other shapes that can be done in p5.js. The links below link to the p5.js documentation, where information about the different shapes an be found. Looking at documentations when learning a new programming language can be very helpful.</p>
+
+<ul>
+	<li><a href="http://p5js.org/reference/#/p5/ellipse" target="_blank">Ellipse</a>: <code>ellipse(x, y, width, height);</code></li>
+	<li><a href="http://p5js.org/reference/#/p5/rect" target="_blank">Rectangle</a>: <code>rect(x, y, width, height);</code> </li>
+	<li><a href="http://p5js.org/reference/#/p5/triangle" target="_blank">Triangle: <code>triangle(x1, y1, x2, y2, x3, y3);</code> </a></li>
+	<li><a href="http://p5js.org/reference/#/p5/line" target="_blank">Line</a>: <code>line(x1, y1, x2, y2);</code> </li>
+	<li><a href="http://p5js.org/reference/#/p5/point" target="_blank">Point</a>: <code>ellipse(x, y);</code> </li>
+	<li><a href="http://p5js.org/reference/#/p5/quad" target="_blank">Quadrilateral</a>: <code>quad(x1, y1, x2, y2, x3, y3, x4, y4);</code> </li>
+	<li><a href="http://p5js.org/reference/#/p5/arc" target="_blank">Arc</a>: <code>arc(a,b,c,d,start,stop,[mode]);</code> </li>
+</ul>
+
+<h2>Transformations(Rotating and Translating Shapes)</h2>
+
+<p>Rotating shapes using P5.js requires use of the <code>translate()</code>, <code>push()</code> and <code>pop()</code> functions. <code>push()</code> saves the current position of the coordinate grid, <code>translate()</code>function temporarily moves the coordinate grid instead of the shape itself. Finally <code>pop()</code> restores the coordinate grid to the way it was before translation.</p>
+
+<p>Moving the shape rather than the grid coordinates might seem like an easier option but that is not the case especially as programmer would have to keep track of all the additions needed to change the position of coordinates for shapes to be drawn, as seen below.</p>
+
+<p>Basic code to draw a colored rectangle</p>
+<pre class="prettyprint linenums">function setup() {
+  // set canvas size
+  createCanvas(200, 200);
+}
+
+function draw() {
+  // set a fill color (red, green, blue)
+  fill(0, 180, 180);
+   
+  // draw a rectangle
+  rect(20, 20, 40, 40);  
+}</pre>
+
+<p>Code to draw a rectangle by changing coordinates using addition</p>
+<pre class="prettyprint linenums">function setup() {
+  // set canvas size
+  createCanvas(200, 200);
+}
+
+function draw() {
+  // set a fill color (red, green, blue)
+  fill(0, 180, 180);
+    
+  // draw a colored rectangle by changing the coordinates
+  rect(20 + 60, 20 + 80, 40, 40);  
+}</pre>
+
+<p> Code to draw a colored rectangle by translating the grid</p> 
+<pre class="prettyprint linenums">function setup() {
+  // set canvas size
+  createCanvas(200, 200);
+}
+
+function draw() {
+  // set a fill color (red, green, blue)
+  fill(0, 180, 180);
+    
+  // draw a colored rectangle by changing the coordinates 
+  push();// records current position of grid
+  translate(60, 80);// moves grid coordinates 60 units to the right and 80 units down.
+  rect(20, 20, 40, 40);//draws rectangle specified position on the translated grid
+  pop();// restores grid coordinates to original position before translation
+}</pre>
+
+<p>For a detailed explanation using the Processing programming language on the concept click on this link <a href="http://www.processing.org/tutorials/transform2d/" target="_blank"></a></p>
+
+<p>To rotate a shape the <code>rotate(radian())</code> function is used with parameters specifying the degree of rotation. The <code>rotate()</code> function does not actually roate the shape but rather it rotates the grid coordinates (or sketch).</p>
+
+<p>The example below draws three rectangles: a red one with no rotation on the left, a green one rotated 45 degrees in the middle of the screen and a blue on with no rotation on the right.</p>
+
+<p>The rotated green rectangle begins by calling the <code>push()</code> function. This function starts a new drawing state. Then we conceptually move our graph paper (or sketch) 200 pixels to the right and 100 pixels down using the <code>translate()</code> function. Then we rotate tell P5js that we want to rotate our graph paper or sketch (not the shape actually) 45 degrees (converted from radians). Then, we draw a normal rectangle on a moved and rotate sketch paper (which will make the rectangle appear to be moved and rotated). Finally, we call the <code>pop()</code> function to restore the original drawing state.</p>
+
+<pre class="prettyprint linenums">function setup() {
+  // set canvas size
+  createCanvas(400, 200);
+}
+
+function draw() {
+  
+  // set background color
+  background(255);
+  
+  // remove stroke
+  noStroke();
+  
+  // set rectMode for all three rectangles
+  rectMode(CENTER);// modifies location for which rectangles are drawn, could be corner, corners, centre or radius.
+
+  // draw a red rectangle
+  fill(255, 0, 0);
+  rect(100, 100, 50, 50);
+  
+  // draw a green rectangle - rotated 45 degrees
+  fill(0, 255, 0);
+  push();
+  translate(200, 100); 
+  rotate(radians(45));
+  rect(0, 0, 50, 50);
+  pop();
+  
+  // draw a blue rectangle - without any rotation at the top-left of the screen
+  fill(0, 0, 255);
+  rect(300, 100, 50, 50);
+  
+}</pre>
+
+<iframe width="100%" height="300" src="//jsfiddle.net/kessy/5ovescub/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<h2>Additional Resources</h2>
+
+<p>To learn more about drawing using p5.js, take a look at the drawing functions in the documentation:</p>
+
+<ul>
+	<li><a href="http://p5js.org/reference/#group-Color">Color</a></li>
+	<li><a href="http://p5js.org/reference/#group-Shape">Shapes</a> - includes 2D primitives, attributes, curves and complex shapes (vertex)</li>
+	<li><a href="http://p5js.org/reference/#group-Transform">Transform</a></li>
+</ul>
+</body>
+</html>
