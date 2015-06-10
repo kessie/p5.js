@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Working with Objects using p5.js</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- jQuery -->
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+		<!-- bootstrap -->
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">	
+		
+		<!-- parse functions -->
+		<script language="javascript" src="../parsefunctions.js"></script>
+		
+		<!-- google prettify -->
+		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+		<style type="text/css"> 
+			body {padding: 0; margin: 0} 
+			canvas { border: 1px solid #ccc; margin-bottom: 25px } 
+			.prettyprint ol.linenums > li { list-style-type: decimal; }
+			iframe { border: 1px solid #ccc; }
+		</style> 
+
+	</head>
+	<body>
+		
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<ul class="nav navbar-nav">
+						<li><a href="../FYP/index.html"><span class="glyphicon glyphicon-chevron-left"></span> Topics</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="container" style="margin-top: 75px">
+
+			<h1>Objects in p5.js</h1>
+			
+			<hr />
+			<p>Now we have got the basics, we can start building more complicated applications similar to apps used on a daily basis.</p>
+			
+			<p> Everything we have done up until now, has been created using procedural programming. Procedural programming as the name implies involves using a list of instructions or procedures to tell the computer what to do. It can be likened to following a cooking recipe. As explained earlier on from this stage forward we will make our programs closely mimic real life happenings.This can be done using object oriented programming, which we would be learning about in this lesson. Object oriented programming makes it possible for objects made on the screen to be more like &quot;things&quot;. This basically means that since things have names, properties and actions, the objects would also have the same.  For example a car as an object in the real world, has a name(peugeot), properties like color(brown), and actions(reversing).</p>
+			
+			<h2>One Car</h2>
+			
+			<p>A car as an object that exists in real life. Let's briefly describe a car say my car.</p>
+			
+			<p>My car is a peugeot 208. Let's name it &quotmyCar&quot;.</p>
+			
+			<p>myCar also has properties. Properties in object oriented programming are similar to &quot;variables&quot; in procedural programming, or ingredients in a cooking recipe. myCar is black. At the moment it has 36,656 miles on it.</p>
+			
+			<p>myCar can also perform a few actions. Methods in object oriented programming are like &quot;functions&quot; in procedural programming, similar to the actions in a cooking recipe. It can reverse. It can drive forward. It can also stop.</p>
+			
+			<p>In the example below, we shall be creating a &quot;Car&quot; class. Very similar to building our very own car factory.</p>
+			
+			<pre class="prettyprint linenums">function setup()
+{
+  createCanvas(800, 400);
+}
+
+function draw()
+{
+
+}
+
+// car constructor
+function Car()
+{
+  this.xpos = 0;
+  this.ypos = random(height);
+  this.speed = 2;
+  this.c = color(153, 102, 51);
+}
+
+// drive method
+Car.prototype.drive = function()
+{
+  if(this.xpos > width)
+  {
+  	this.xpos = 0;
+  }
+  this.xpos = this.xpos + this.speed;        
+}
+
+// brake method
+Car.prototype.brake = function()
+{
+  if(this.speed > 0)
+  {
+	  this.speed = this.speed - 0.3;
+  } else {
+	  this.speed = 0;
+  }        
+}
+
+// display method
+Car.prototype.display = function()
+{
+  // body of the car
+  fill(this.c);
+  rectMode(CORNER);
+  rect(this.xpos, this.ypos, 100, 50);
+
+  // wheels
+  fill(0);
+  ellipse(this.xpos + 20, this.ypos + 45, 40, 40);
+  ellipse(this.xpos + 80, this.ypos + 45, 40, 40);
+}</pre>
+
+	<p>In the code above car objects can be created, similar to what is done in a car factory. However, no car objects have been created just yet in the <code>setup()</code> or <code>draw()</code> functions yet. In the next step, we will be creating new cars. But first, let's divide the code into more smaller chunks to make explanation easier:</p>
+	
+	<p>When a car is created, the code inside of the <code>Car()</code> function runs automatically. When using objects, this function is known as the &quot;constructor&quot; - the name of the constructor is normally capitalized. According to <a href="http://www.techopedia.com/definition/5656/constructor" target="_blank">techopedia</a> a constructor is a special method of a class or structure in object-oriented programming that initializes an object of that type, and it can be used to set the values of the members of an object, either to default or to user-defined values. In this case the <code>Car()</code> function assigns the car four properties: xpos, ypos, speed and c. Other properties for like miles and color of the car could be added to this example, by simply declaring: <code>myCar.miles = 32565;</code> and <code>myCar.color = brown;</code></p>
+	<p>Back to the code written above, below is a brief explanation of the various methods used in the car class</p>
+	<p>The <code>drive</code> method increases the &quot;xpos&quot; of the car, similar to acceleration.</p>
+	
+	<p>The <code>brake</code> method decreases the &quot;speed&quot; of the car until it stops completely, exactly like the function of a brake in a real life car.</p>
+	
+	<p>The <code>display</code> method draws the car onto the screen using it's &quot;xpos&quot; and &quot;ypos&quot; properties.</p>  	
+	
+	<p>Now that we have described the methods needed to create a car. Let's create one in our car factory:</p>
+		
+			<pre class="prettyprint linenums">var myCar;
+			
+function setup()
+{
+  createCanvas(800, 400);
+  
+  // create the car
+  myCar = new Car();
+}
+
+function draw()
+{
+  // clear background
+  background(255);
+  
+  // check the xpos of myCar
+  // if myCar is approaching the edge of the screen, apply the brakes
+  if(myCar.xpos > 600)
+  {
+    myCar.brake();
+  } 
+  
+  // drive car
+  myCar.drive();
+  
+  // display the car
+  myCar.display();
+  
+  // display the speed
+  fill(50);
+  noStroke();
+  text("Speed: " + myCar.speed, 25, 25);
+  
+  // display instructions
+  text("Press any key to reset the xpos of myCar", 25, height - 50);
+}
+
+function keyPressed()
+{
+  myCar.xpos = 0;
+  myCar.speed = 2;
+}
+
+// car constructor
+function Car()
+{
+  this.xpos = 0;
+  this.ypos = 200;
+  this.speed = 2;
+  this.c = color(153, 102, 51);
+}
+
+// drive method
+Car.prototype.drive = function()
+{
+  if(this.xpos > width)
+  {
+    this.xpos = 0;
+  }
+  this.xpos = this.xpos + this.speed;        
+}
+
+// brake method
+Car.prototype.brake = function()
+{
+  if(this.speed > 0)
+  {
+    this.speed = this.speed - 0.05;
+  } else {
+    this.speed = 0;
+  }        
+}
+
+// display method
+Car.prototype.display = function()
+{
+  // body of the car
+  fill(this.c);
+  rectMode(CORNER);
+  rect(this.xpos, this.ypos, 100, 50);
+
+  // wheels
+  fill(0);
+  ellipse(this.xpos + 20, this.ypos + 45, 40, 40);
+  ellipse(this.xpos + 80, this.ypos + 45, 40, 40);
+}</pre>	
+			
+	<iframe width="100%" height="300" src="//jsfiddle.net/kessy/5pq8qrLj/embedded/js,result/" allowfullscreen="allowfullscreen" ></iframe>		
+	
+	<p>This may seem like a lot of code. So, we shall briefly explain what the code does. First of all, a global variable <code> var myCar;</code> was declared at the very top of the javascript. This was done so that all functions can access the variable. Then, a car object was created in the setup function: <code>myCar = new Car();</code>. Since the car has been created the constructor automatically runs. As can be seen in the <code>draw()</code> function, the car is given instructions to drive, but when it approaches the edge of the screen, it is told to apply the brakes. Since access to the properties of this car is available in the <code>setup()</code> and <code>draw()</code> functions, new properties can be added to the car object. For example to change the speed of the car. A nitro button should be created, which when pressed increases the speed of the car, like: <code>myCar.speed = 20;</code></p>		
+		
+	<p> In order to set or get a property a user/programmer, does the following.</p>	
+	<p>To set a property: <code>myCar.speed = 10;</code></p>
+	<p>To get a property: <code>text(myCar.speed, 25, 25);</code></p>
+	<p>While calling a method in a class is done as shown below</p>
+	<p>To call a method: <code>myCar.drive();</code></p>
+	
+	<h2>Two Cars</h2>
+	
+	<p>It might seem like a lot of work trying to create just one car, but since the whole idea of using object oriented programming in this case especially is to create objects which are similar to real life applications and we have the ability to create more than one car, we shall be creating several others. Also, as explained earlier on, since the car class we created is similar to a car factory, and it is common knowledge that no car factory produces or creates only one car.</p>
+	
+	<p>Now that we have a little car class(car factory). we shall be creating a second car, that is the first car and second one. to make it easier to diffrentiate the cars , we shall make the code a little more complex by adding to each car object the ability to customize it.</p>
+	
+<p>This is done by passing ypos and speed properties when creating a car.As a result of these two properties, the constructors will be able to use them to make custom cars. This basically means each car would have its own unique properties. For example, car A moves faster than car B, because the driver of car B is a learner.</p>
+	<p>To create cars A and B, some changes have to be made to the script for one car example. To do this follow the steps below:</p>
+	<ul>
+	<li>Open jsfiddle editor for the previous example</li>
+	<li>To the first line of code declaring the global variable myCar add another variable <code>newCar</code></li>
+	<li>In <code>setup()</code> function, add variables ypos and speed to the line of code which creates myCar object i.e.<code>myCar = new Car(150,2);</code></li>
+	<li>In <code>setup()</code> function, create another car object lke:<code>newCar = new Car(250, 3);</code></li> 
+	<li>In <code>draw()</code> function, add new block of code which checks the xpos, drives and displays newCar object.<p>(Hint:copy and paste already existing code in function draw(),changing only variable name myCar to newCar.</p></li>
+	<li>In the car constructor code, change the line asigning the color of the car to this:<code>this.c = color(random(255), random(255), random(255));</code>, this would help generate random car colors for car objects created.</li>
+</ul>
+	
+	
+	<pre class="prettyprint linenums">var myCar, newCar;
+			
+function setup()
+{
+  createCanvas(800, 400);
+  
+  // create the myCar (ypos, speed)
+  myCar = new Car(150, 2);
+  
+  // create the yourCar (ypos, speed)
+  newCar = new Car(250, 3);
+}
+
+function draw()
+{
+  // clear background
+  background(255);
+  
+  //////////////////////////////////
+  // myCar
+  //////////////////////////////////
+  
+  // check the xpos of myCar
+  if(myCar.xpos > width)
+  {
+    myCar.xpos = 0;
+  } 
+  
+  // drive myCar
+  myCar.drive();
+  
+  // display myCar
+  myCar.display();
+  
+  //////////////////////////////////
+  // newCar
+  //////////////////////////////////
+  
+  // check the xpos of newCar
+  if(newCar.xpos > width)
+  {
+    newCar.xpos = 0;
+  } 
+  
+  // drive newCar
+  newCar.drive();
+  
+  // display newCar
+  newCar.display();
+  
+}
+
+// car constructor
+function Car(ypos, speed)
+{
+  this.xpos = 0;
+  this.ypos = ypos;
+  this.speed = speed;
+  // generates random car colors for cars drawn
+  this.c = color(random(255), random(255), random(255));
+}
+
+// drive method
+Car.prototype.drive = function()
+{
+  if(this.xpos > width)
+  {
+  	this.xpos = 0;
+  }
+  this.xpos = this.xpos + this.speed;        
+}
+
+// display method
+Car.prototype.display = function()
+{
+  // body of the car
+  fill(this.c);
+  rectMode(CORNER);
+  rect(this.xpos, this.ypos, 100, 50);
+
+  // wheels
+  fill(0);
+  ellipse(this.xpos + 20, this.ypos + 45, 40, 40);
+  ellipse(this.xpos + 80, this.ypos + 45, 40, 40);
+}</pre>	
+	
+	<h2>Many Cars</h2>
+	
+	<p>In the world at large, there is a huge economic revolution as a result of the automobile industry. With this being said car factories play a very important role in the creation of jobs to design motorways, petrol stations, hotels and roadside pubs/restaurants.It is important to note that we can use our car factory to create not only two cars but many more cars.</p>
+	
+	<p>Before the creation of several more cars, there is the need to make our code much more efficient. For example, we need to create seperate varibles for different cars like: iceCreamTruck, porschePanamera, hisCar, herCar, etc doing this would take forever besides becoming repetitive and boring. In order to make this more efficient, we shall be using the indispensable <code>loop</code> and it's dependable helpmate the <code>array</code>.
+	
+	<h3>Loops</h3>
+	
+	<p>As the name implies a loop lets you do something over and over and over again. For example, you decide to draw 25 circles.</p>
+	
+	<p>It could be done by doing the following, with the knowledge we have now:</p>
+	
+	<pre class="prettyprint linenums">function setup()
+{
+  createCanvas(400, 150);
+
+  // draw 25 circles
+  fill(0);
+  ellipse(random(width), random(height), 10, 10);
+  ellipse(random(width), random(height), 10, 10);
+  ellipse(random(width), random(height), 10, 10);
+  ellipse(random(width), random(height), 10, 10);
+  ellipse(random(width), random(height), 10, 10);
+  ellipse(random(width), random(height), 10, 10);
+  ellipse(random(width), random(height), 10, 10);
+  ellipse(random(width), random(height), 10, 10);
+  ellipse(random(width), random(height), 10, 10);
+  ellipse(random(width), random(height), 10, 10);
+  ellipse(random(width), random(height), 10, 10);
+  ellipse(random(width), random(height), 10, 10);
+  ellipse(random(width), random(height), 10, 10);
+  ellipse(random(width), random(height), 10, 10);
+  ellipse(random(width), random(height), 10, 10);
+  ellipse(random(width), random(height), 10, 10);
+  ellipse(random(width), random(height), 10, 10);
+  ellipse(random(width), random(height), 10, 10);
+  ellipse(random(width), random(height), 10, 10);
+  ellipse(random(width), random(height), 10, 10);
+  ellipse(random(width), random(height), 10, 10);
+  ellipse(random(width), random(height), 10, 10);
+  ellipse(random(width), random(height), 10, 10);
+  ellipse(random(width), random(height), 10, 10);
+  ellipse(random(width), random(height), 10, 10);
+}
+
+function draw()
+{
+
+}</pre>
+
+<iframe width="100%" height="300" src="//jsfiddle.net/kessy/v924ua60/embedded/js,result/" allowfullscreen="allowfullscreen" ></iframe>
+
+	<p>A much more efficient way to do this would be to use loops:</p>
+	
+	<pre class="prettyprint linenums">function setup()
+{
+  createCanvas(400, 150);
+
+  // draw 50 circles
+  fill(0);
+  for(var i = 0; i &lt; 50; i++)
+  {
+    ellipse(random(width), random(height), 10, 10);
+  }
+}
+
+function draw()
+{
+
+}</pre>
+
+<iframe width="100%" height="300" src="//jsfiddle.net/kessy/dndxjvh7/embedded/js,result/" allowfullscreen="allowfullscreen" ></iframe>
+	
+	<p>Below is a brief explanation of how the <code>for</code> loop works:</p>
+	
+	<p>The <code>for</code> loop makes it possible to run the <code>ellipse(random(width), random(height), 10, 10);</code> code twenty five times.</p>
+	
+	<p><code>var i = 0</code> specifies what counter value to begin with.</p>
+	<p><code>i &lt; 25</code> specifies when to stop maing random circles, which is when the circles are 25 in number i.e 0-24</p>
+	<p><code>i++</code> increases the counter by 1</p>
+	
+	<p>Basically, as long, as <code>i</code> is less than 25, the code will continue making random circles. For each random circle that's created, <code>i</code> gets increased by one. To make this easier, we can print the value of <code>i</code>to the console, by adding the line of code<strong>println(i);</strong> to the <code> for()</code> loop function immediately after the <code>ellipse();</code>function.</p>
+
+<p>Back to our car objects, a loop makes it possible for a whole lot of cars to be created quickly, rather than creating each car seperately. In order to do this as explained earlier on we need the help of a trusty sidekick called <code>array</code>. This would help  in creating more specific cars rather than random cars which can be created using only the <strong>for loop</strong>.
+	
+	<h3>Arrays</h3>
+
+	<p>An array can be defined as a series of objects which all have the same size and are of the same type. It is a list of data, an index number identifies each piece of data, this index number represents elements position in the array. Basically, the first element in the array is [0], the second element is [1], and so on until the last element in the array.</p>
+	<p>For example, buying a box of 12 cupcakes, the person behind the counter doesn't simply drop 12 cupcakes on the counter for you to pick up with your hands. Instead, each cupcake is put into a box. The box of cupcakes is referred to as an array, a list of data or a list of donuts.</p>
+	
+	<p>Each cupcake in the box would have it own name or color or value, just like how each object in the array has its own value:</p>
+	
+	<pre class="prettyprint linenums">// create an empty array (or box of cupcakes)
+var cupcakes = [];
+	
+// start filling the array with donuts 
+cupcakes[0] = "Red Velvet";
+cupcakes[1] = "Peanut Butter";
+cupcakes[2] = "Creme Egg"; 
+cupcakes[3] = "Chocolate";</pre>
+	
+	<p>An array can also be created like this:</p>
+	
+	<pre class="prettyprint linenums">var cupcakes = ["Red Velvet", "Peanut Butter", "Creme Egg", "Chocolate"];</pre>
+	
+	<p>Whichever way an array is created doesn't really matter as they both function the way.</p>
+	
+	<p>This same method can be applied to the car factory. For example, &quot;We want a box of cars&quot; . With each car having it's own name.</p>
+	
+	<pre class="prettyprint linenums">var cars = [];
+			
+function setup()
+{
+  createCanvas(800, 400);
+  
+  // make 25 cars
+  for(var i = 0; i &lt; 25; i++)
+  {
+    cars[i] = new Car();
+  }
+}
+
+function draw()
+{
+  // clear background
+  background(255);
+  
+  // loop through each car
+  for(var i = 0; i &lt; cars.length; i++)
+  {
+    cars[i].drive();
+    cars[i].display();
+  }      
+  
+}
+
+// car constructor
+function Car(ypos, speed)
+{
+  this.xpos = random(width);
+  this.ypos = random(height);
+  this.speed = random(4);
+  this.c = color(random(255), random(255), random(255));
+}
+
+// drive method
+Car.prototype.drive = function()
+{
+  if(this.xpos &gt; width)
+  {
+  	this.xpos = -200; // start offscreen
+  	this.ypos = random(height);
+  }
+  this.xpos = this.xpos + this.speed;        
+}
+
+// display method
+Car.prototype.display = function()
+{
+  // body of the car
+  fill(this.c);
+  rectMode(CORNER);
+  rect(this.xpos, this.ypos, 100, 50);
+
+  // wheels
+  fill(0);
+  ellipse(this.xpos + 20, this.ypos + 45, 40, 40);
+  ellipse(this.xpos + 80, this.ypos + 45, 40, 40);
+}</pre>
+
+<iframe width="100%" height="300" src="//jsfiddle.net/kessy/wpp29hff/embedded/js,result/" allowfullscreen="allowfullscreen"></iframe>
+	
+	<p>To further explain how each car gets it's own name:</p>
+	
+	<pre class="prettyprint linenums">for(var i = 0; i &lt; 25; i++)
+{
+  cars[i] = new Car();
+}</pre>
+
+	<p>This for loop line generates the equivalent of the following:</p>
+	
+	<pre class="prettyprint linenums">cars[0] = new Car();
+cars[1] = new Car();
+cars[2] = new Car();
+cars[3] = new Car();
+cars[4] = new Car();
+cars[5] = new Car();
+cars[6] = new Car();
+cars[7] = new Car();
+cars[8] = new Car();
+cars[9] = new Car();
+cars[10] = new Car();
+cars[11] = new Car();
+cars[12] = new Car();
+cars[13] = new Car();
+cars[14] = new Car();
+cars[15] = new Car();
+cars[16] = new Car();
+cars[17] = new Car();
+cars[18] = new Car();
+cars[19] = new Car();
+cars[20] = new Car();
+cars[21] = new Car();
+cars[22] = new Car();
+cars[23] = new Car();
+cars[24] = new Car();
+</pre>	
+
+<a class="btn btn-primary" href="../FYP/exercises.html">Next: Additional Examples</a>
+	</div>	
+	</body>
+</html>
+
