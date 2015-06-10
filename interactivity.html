@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Interactivity with p5.js</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- jQuery -->
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+		<!-- bootstrap -->
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">	
+		
+		<!-- parse functions -->
+		<script language="javascript" src="../parsefunctions.js"></script>
+		
+		<!-- google prettify -->
+		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+		<style type="text/css"> 
+			body {padding: 0; margin: 0} 
+			canvas { border: 1px solid #ccc; margin-bottom: 25px } 
+			.prettyprint ol.linenums > li { list-style-type: decimal; }
+			iframe { border: 1px solid #ccc; }
+		</style> 
+
+	</head>
+	<body>
+		
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<ul class="nav navbar-nav">
+						<li><a href="../FYP/index.html"><span class="glyphicon glyphicon-chevron-left"></span> Topics</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="container" style="margin-top: 75px"> 
+
+			<h1>Basic Interactivity with p5.js</h1>		
+			<hr />
+
+			<p>Besides communicating with a computer another rewarding aspect of programming is creating programs that respond to things. Some of which might include mouse events, button presses, and other types of inputs. In this lesson we shall be implementing a few basic components to allow users to interact with sketches.</p>
+			
+			<h2>Circular Buttons</h2>
+			
+			<p>In the example below, we will implement a circular button. When the mouse hovers over the button, the button changes color (and the cursor would display a hand). If a user clicks the button, the background color of the sketch will change to a random color.</p>
+
+<iframe width="100%" height="300" src="//jsfiddle.net/kessy/k7svm8zp/embedded/js,result/" allowfullscreen="allowfullscreen" ></iframe>
+			
+			<pre class="prettyprint linenums">var backgroundColor;
+var isOverCircle;
+
+function draw() 
+{
+  background(backgroundColor);
+  
+  // if the distance is less than the circle's radius
+  if(distance &lt; 50)
+  {
+    isOverCircle = true;
+  } else {
+    isOverCircle = false;
+  }
+  
+  // draw a circle
+  ellipseMode(CENTER);
+  stroke(0);
+  strokeWeight(5);
+  if(isOverCircle == true)
+  {
+    fill(100);
+    cursor(HAND);
+  } else {
+    fill(200); 
+    cursor(ARROW); 
+  }
+  ellipse(200, 200, 100, 100);
+  
+}
+
+function mousePressed()
+{
+  if(isOverCircle == true)
+  {
+    backgroundColor = color(random(255), random(255), random(255));
+  }
+}</pre>		
+	<p>As can be seen from the code snippets above, we keep track of the variable called <code>isOverButton</code>. The variable in question is a boolean variable, meaning it's value can be true or false. In the <code>draw()</code> loop, we check if the distance between the mouse and the circle's position is less than or equal to the circle's radius (which is half of the circle's diameter). If the answer is true, then the mouse must be inside the circle. When that happens, the value of <code>isOverCircle</code> is set equal to true. If the mouse is not inside the circle, we set the value of <code>isOverCircle</code> equal to false.</p>
+	
+	<p>With this information, it is possible to implement a rollover effect to inform the user that the circle is a button.<strong>A rollover effect is a visual process of "rolling the mouse cursor over a button", which causes the button to react.</strong>.For a rollover effect the user only requires two images which alternate between each other for this interaction to occur. We are also using the value of <code>isOverCircle</code> in the <code>mousePressed()</code> event handler to check if we should change the background color to a random color.</p>
+	
+	<h2>Rectangular Buttons</h2>
+	
+	<p>Rectangular buttons are a bit more tricky than circular ones.This is because the <code>dist()</code> function won't work in this case as a rectangle has corners. In order to figure out if the mouse is over the rectangle, four questions need to be checked:</p>
+	
+	<ul>
+		<li>mouseX &gt;= x pos of rectangle</li>
+		<li>mouseX &lt;= x pos of rectangle + width of rectangle</li>
+		<li>mouseY &gt;= y pos of rectangle</li>
+		<li>mouseY &lt;= y pos of rectangle + height of rectangle</li>
+	</ul>
+	
+	<p>ALL four of these conditions need to be true, for it to be assumed that the mouse is over the rectangle.</p>
+	
+<iframe width="100%" height="300" src="//jsfiddle.net/kessy/f1surtwm/embedded/js,result/" allowfullscreen="allowfullscreen"></iframe>
+	
+	<!--<iframe src="http://coursescript.com/notes/interactivecomputing/interactivity/rectanglebutton/index.html" width="400" height="400"></iframe>-->
+	
+	<p>Below is a break down of code and brief explanation of how each question works. The first one simply checks the x-axis:</p>
+	
+	<ul>
+		<li>mouseX &gt;= x pos of rectangle</li>
+		<li>mouseX &lt;= x pos of rectangle + width of rectangle</li>
+	</ul>
+	
+	<p>The second one checks the y-axis:</p>
+	
+	<ul>
+		<li>mouseY &gt;= y pos of rectangle</li>
+		<li>mouseY &lt;= y pos of rectangle + height of rectangle</li>
+	</ul>
+	
+	<p>The third one checks the x-axis and the y-axis:</p>
+	
+	<ul>
+		<li>mouseX &gt;= x pos of rectangle</li>
+		<li>mouseX &lt;= x pos of rectangle + width of rectangle</li>
+		<li>mouseY &gt;= y pos of rectangle</li>
+		<li>mouseY &lt;= y pos of rectangle + height of rectangle</li>
+	</ul>
+	
+	<h2>Implementing a Slider</h2>
+	<p> As explained earlier on, one of the advanteges of p5.js is that its library allows the creation and interaction with native HTML components. As the title of this section suggests we shall be implementing a slider which is a HTML component, that woud change the size of the text on the screen.</p>
+	<p>In order to implement this slider another javascript library is added</p>
+	
+	<p><code>&quot;libraries/p5.dom.js&quot;</code></p>
+	
+	<p>You do not have to worry about doing this yourself as it has already being added to embedded page below as an external file/library</p>
+	
+	<p>This basically means that the code in the javascript can make use of <a href="http://p5js.org/reference/#/libraries/p5.dom" target="_blank">p5.dom.js</a> library. This library allows p5.js to interface directly with native HTML elements, including: text, hyperlinks, images, inputs, video, audio, and a webcam.</p> 
+	
+	<p>In this example, we will be addressing the basic things this library is capable of doing. Again, we will be <a href="http://p5js.org/reference/#/p5/createSlider" target="_blank">creating a slider</a> that controls the size of the text.</p>
+	
+	<p>Open embedded page below and type in the following code:</p>
+	
+	<pre class="prettyprint linenums">var textSizeSlider;
+
+function setup() {
+  createCanvas(400, 400);
+
+  // create a slider (min, max, default value)
+  textSizeSlider = createSlider(10, 72, 36);
+  textSizeSlider.position(25, 25);
+}
+
+function draw() 
+{
+  background(255);
+  
+  // display text
+  noStroke();
+  fill(100);
+  textAlign(CENTER);
+  textFont("Georgia");
+  textSize(textSizeSlider.value()); 
+  text("Size: " + textSizeSlider.value(), width/2, height/2); 
+}</pre>
+
+	<iframe width="100%" height="300" src="//jsfiddle.net/kessy/1q0z7nef/embedded/js,result/" allowfullscreen="allowfullscreen"></iframe>
+	
+	<p>In the example above there was a  new <code>text()</code> functions in the code without warning. Here is a list of a few functions that you can be used to manipulate text:</p>
+	
+	<ul>
+      <li><a href="http://p5js.org/reference/#/p5/textAlign">textAlign()</a></li>
+      <li><a href="http://p5js.org/reference/#/p5/textLeading">textLeading()</a></li>    
+      <li><a href="http://p5js.org/reference/#/p5/textSize">textSize()</a></li>
+      <li><a href="http://p5js.org/reference/#/p5/textStyle">textStyle()</a></li>
+      <li><a href="http://p5js.org/reference/#/p5/textWidth">textWidth()</a></li>
+      <li><a href="http://p5js.org/reference/#/p5/text">text()</a></li>
+      <li><a href="http://p5js.org/reference/#/p5/textFont">textFont()</a></li>
+	</ul>
+	
+	<p>Back to the slider example, we need to first create a global variable for the slider:</p>
+	
+	<p><code>var textSizeSlider;</code></p>
+	
+	<p>Then, in the <code>setup()</code> function, we created a slider and positioned it onto the screen:</p>
+	
+	<p><code>// create a slider (min, max, default value)<br />
+  textSizeSlider = createSlider(10, 72, 36);<br />
+  textSizeSlider.position(25, 25);</code></p>
+  
+  	<p>To get the value in the slider, you can refer to: <code>textSizeSlider.value()</code></p>
+  	
+  	<h2>Implementing an HTML Button</h2>
+  	
+<pre class="prettyprint linenums">var textColorButton;
+
+var textColor;
+
+function setup() {
+  createCanvas(400, 400);
+
+  // default text color
+  textColor = color(0, 0, 0);
+
+  // create clear button
+  textColorButton = createButton('Change Color');
+  textColorButton.position(25, 25);
+  textColorButton.mousePressed(changeColor); 
+}
+
+function draw() 
+{
+  background(255);
+  
+  // display text
+  noStroke();
+  fill(textColor);
+  textAlign(CENTER);
+  textFont("Georgia");
+  textSize(72); 
+  text("Color", width/2, height/2); 
+}
+
+function changeColor()
+{
+  textColor = color(random(255), random(255), random(255));
+}</pre>
+
+<p>Type above code in embedded jsFiddle below. To open jsFiddle editor, click the "edit in jsFiddle button" at the top right corner of embedded page below.</p>
+	
+    <iframe width="100%" height="300" src="//jsfiddle.net/kessy/1q0z7nef/embedded/js,result/" allowfullscreen="allowfullscreen"></iframe>
+
+<a class="btn btn-primary" href="../FYP/examples.html">Next: Further Examples</a>
+	</div>			
+	</body>
+</html>
+
