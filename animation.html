@@ -33,7 +33,7 @@
 			<div class="container">
 				<div class="navbar-header">
 					<ul class="nav navbar-nav">
-						<li><a href="../index.html"><span class="glyphicon glyphicon-chevron-left"></span> Topics</a></li>
+						<li><a href="../FYP/index.html"><span class="glyphicon glyphicon-chevron-left"></span> Topics</a></li>
 					</ul>
 				</div>
 			</div>
@@ -47,7 +47,7 @@
 
 <p>Animation in p5.js can be said to be similar to a traditional flip book animation. This basically means that the <code>draw()</code> function gets called approximately 60 times a second, each time drawing an image onto the screen. To create an illusion of movement a sequence of static images that have the tiniest differences from each other is drawn, this could be thought of as viewing different frames of a moving object in a video.</p>
 
-<iframe width="420" height="315" src="//www.youtube.com/embed/xSrDnIVgVv0" frameborder="0" allowfullscreen></iframe>
+<iframe width="420" height="315" src="//www.youtube.com/embed/xSrDnIVgVv0"  allowfullscreen></iframe>
 
 <p>Using the ellipse example in the previous tutorials, we could make a flip book animation with the same ellipse using p5.js. This can be done by drawing an ellipse on the screen and then draw another ellipse slightly to the right of the previous one on the next frame. Basically change the x and y values of the ellipse ever so slighty. And do that a few hundred times... and it would appear to animate something like this :</p>
 
@@ -60,7 +60,8 @@
 
 <p>As exlained above instead of drawing each circle repeatedly a variable would be used to change the x position of the circle for each frame to create the illusion of motion. Which means, on the first frame the xpos of the circle will be zero; on the next frame the xpos of the circle equal to one; on the frame after that, we will make it three... and so on.</p>
 
-<iframe width="100%" height="300" src="//jsfiddle.net/kessy/2mr3ynnr/1/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<iframe width="100%" height="300" src="//jsfiddle.net/kessy/2mr3ynnr/embedded/js,result/" allowfullscreen="allowfullscreen" ></iframe>
 
 <p>The first line declares a new variable called 'xpos': <code>var xpos = 0;</code> which is subject to change.</p>
 
@@ -113,7 +114,7 @@ var speed = 2;
 
 <p>All the examples that we have covered so far basically do their own thing. This can be improved by making our sketches more interactive. For example, including differnet functionalities that could make the circle(ellipse) respond to keyboard or mouse events. An example of a simple keyboard event would be to move the circle to a random location each time a key on the keyboard is clicked (you may need to click on the result section of jsfiddle editor one time to give it focus):</p>
 
-<iframe width="100%" height="300" src="//jsfiddle.net/kessy/xvv08oos/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/kessy/xvv08oos/embedded/js,result/" allowfullscreen="allowfullscreen" ></iframe>
 
 <pre class="prettyprint linenums">// x position variable
 var xpos = 200;
@@ -156,7 +157,8 @@ function keyPressed()
 
 <p>In the example below, we use the arrow keys to control the movement of the circle:</p>
 
-<iframe width="100%" height="300" src="//jsfiddle.net/kessy/8uvnaLx4/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<iframe width="100%" height="300" src="//jsfiddle.net/kessy/8uvnaLx4/embedded/js,result/" allowfullscreen="allowfullscreen" ></iframe>
 
 <p>Few modifications were made to enable the circle move only when arrow keys are pressed. They include the addition of a new variable <strong>numPixels</strong> as well as a function <strong>keyPressed()</strong> which contained a local function to p5.js <strong>keyCode</strong>, which is used to detect special keys like the arrow keys, hence making changes to the value of xpos.</p>
 
@@ -197,9 +199,9 @@ function keyPressed()
 
 <p>To make it a little bit more difficult. Try adding easing and fluid movement so that the character 'glides' across the sketch. To help with this, we can take a look at this code made in Processing and see if you can refactor it to work in p5.js with keyboard events: <a href="https://www.processing.org/examples/easing.html" target="_blank">https://www.processing.org/examples/easing.html</a>.</p>
 
-<p> In the last example, the arrow key was used to control the circle using code that ,ooked like this: <code>if(keyCode == LEFT_ARROW)</code>. This code can be applied to normal keys like letters. For example the letter 'G', would be done using code:<code>if(key == 'R' || key == 'r')</code>. Below is an example which changes background color of sketch when R, G, B keys are pressed:</p>
+<p> In the last example, the arrow key was used to control the circle using code that ,looked like this: <code>if(keyCode == LEFT_ARROW)</code>. This code can be applied to normal keys like letters. For example the letter 'G', would be done using code:<code>if(key == 'R' || key == 'r')</code>. Below is an example which changes background color of sketch when R, G, B keys are pressed:</p>
 
-<iframe width="100%" height="300" src="//jsfiddle.net/kessy/0my9ouat/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/kessy/0my9ouat/embedded/js,result/" allowfullscreen="allowfullscreen" ></iframe>
 
 <h2>Mouse Events</h2>
 
@@ -226,7 +228,7 @@ function keyPressed()
 
 <p>We shall start off with creating a sketch that just tracks the location of mouse. Then, when the mouse button is pressed, a random background color is created. Two variable that would be used are the variables <code>mouseX</code> and <code>mouseY</code> are variables that can be referred to in p5.js an are local to p5.js which means we don't need to create them ourselves. Also,  in order to detect when the mouse button has been pressed, we make use of the <code>mousePressed()</code> for event handling.</p>
 
-<iframe width="100%" height="300" src="//jsfiddle.net/kessy/s32m31t5/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/kessy/s32m31t5/embedded/js,result/" allowfullscreen="allowfullscreen" ></iframe>
 <p> Event hnadling in p5.js could also be extended to <strong>touch events</strong> on mobile devices using the p5.js class for such: 
 
 <ul>
@@ -270,12 +272,11 @@ function touchStarted()
   c = color(random(255), random(255), random(255));
 }</pre>-->
 
-<p>Now, we have covered the basics of animation, event handling. Try create a basic drawing tool. Simply put, the main thin to track is the <code>isDrawing</code> variable. If the mouse button is pressed, then set <code>isDrawing</code> variable equal to true, and false if the mouse button is released.Futhermore, if the <code>isDrawing</code> variable is true then instruct sketch to draw a line from the previous mouse location to the current one. Basically when the mouse is pressed and dragged a line should be drawn. Like the example below.</p>
-
+<p>Now, we have covered the basics of animation, event handling. Try create a basic drawing tool. Simply put, the main thing to track is the <code>isDrawing</code> variable. If the mouse button is pressed, then set <code>isDrawing</code> variable equal to true, and false if the mouse button is released.Futhermore, if the <code>isDrawing</code> variable is true then instruct sketch to draw a line from the previous mouse location to the current one. Basically when the mouse is pressed and dragged a line should be drawn. Like the example below.</p>
 
 <iframe src="http://coursescript.com/notes/interactivecomputing/animation/drawing2/index.html" width="400" height="400"></iframe>
 
-
-<a class="btn btn-primary" href="../html/interactivity.html">Next: Interactivity</a>
-</body>
+<a class="btn btn-primary" href="../FYP/interactivity.html">Next: Interactivity</a>
+	</body>
+	</div>
 </html>
