@@ -37,7 +37,7 @@
 			<div class="container">
 				<div class="navbar-header">
 					<ul class="nav navbar-nav">
-						<li><a href="../html/index.html"><span class="glyphicon glyphicon-chevron-left"></span> Topics</a></li>
+						<li><a href="../FYP/index.html"><span class="glyphicon glyphicon-chevron-left"></span> Topics</a></li>
 					</ul>
 				</div>
 			</div>
@@ -76,7 +76,9 @@ function draw() {
   // put drawing code here
 }</pre> 
 
-<p>P5.js includes <a href="http://p5js.org/reference/" target="_blank">many functions</a> (not just <code>setup()</code> and <code>draw()</code>). Another function <code>createCanvas()</code> for instance would be added inside of our <code>setup()</code>. This function is used to determine how big we want our sketch to be:</p>
+<p>As can be seen above there are two main functions included in the code snippet. According to <a href="http://www.webopedia.com/TERM/F/function.html">webopedia</a>, a function is a named section of a program that performs a specific task. Basically a routine, procedure or a verb that is it does something. </p>
+
+<p>The <code>setup()</code> function runs only once when the sketch first loads, it runs the block of code inside its curly bracket. The <code>draw()</code> function runs a block of code repeatedly - over and over and over again, similar to a  <a href="https://www.youtube.com/watch?v=8iwhu0nUtdo" target="_blank">flip book</a>.</p>
 
 <pre class="prettyprint linenums">function setup() {
   // set canvas size
@@ -107,7 +109,7 @@ function draw() {
 
 <p>To test code we run in jsfiddle editor, this is done by clicking the "edit in jsfiddle" button at the top right corner of embedded webpage.:</p>
 
-<p><iframe width="100%" height="300" src="//jsfiddle.net/kessy/hqu25926/embedded/"></iframe></p>
+<p><iframe width="100%" height="300" src="//jsfiddle.net/kessy/hqu25926/embedded/js,result/"></iframe></p>
 
 <h2>Color: white, black &amp; grey</h2>
 
@@ -136,7 +138,7 @@ function draw() {
 
 <p> Changes can be made to the parameter in the <code>fill()</code> function which would in turn change the ellipse's fill color. To change parameter in <code>fill()</code>, edit code in jsfiddle by clicking the top right button "edit in jsfiddle" in embedded page below.</p>
 <!-- add jsfiddle grey ellipse code like above here-->
-<p> <iframe width="100%" height="300" src="//jsfiddle.net/kessy/o1rp24ba/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe></p>
+<p> <iframe width="100%" height="300" src="//jsfiddle.net/kessy/o1rp24ba/embedded/js,result/" allowfullscreen="allowfullscreen" ></iframe></p>
 
 <h2>Color: all colors</h2>
 
@@ -157,7 +159,7 @@ function draw() {
 
 <p>To mix these three colors i.e. red, blue and green, the parameters of fill should be changed in order to create different colors.</p>
 
-<iframe width="100%" height="300" src="//jsfiddle.net/kessy/fupqv4rx/1/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/kessy/fupqv4rx/1/embedded/js,result/" allowfullscreen="allowfullscreen" ></iframe>
 <h2>Changing the outline properties</h2>
 
 <p> The outline is similar to a stroke and as the name suggests an outline is a line indicating the shape of an object in a sketch. Outline properties of any shape can easily be changed. By default, our ellipse from previous examples has a black stroke that is 1 pixel thick. To change to a blue stroke 10 pixels thick, Try the following in your code editor:</p>
@@ -179,7 +181,7 @@ function draw() {
   ellipse(100, 100, 150, 150);  
 }</pre>
 
-<iframe width="100%" height="300" src="//jsfiddle.net/kessy/y1zfmje3/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/kessy/y1zfmje3/embedded/js,result/" allowfullscreen="allowfullscreen" ></iframe>
 
 <p>The stroke can be completely removed, by simply specifying using code <code>noStroke();</code> as seen in below.</p>
 <p>In jsfiddle editor for example above delete lines of code which set stroke properties and replace with <code>noStroke();</code></p>
@@ -307,7 +309,7 @@ function draw() {
   
 }</pre>
 
-<iframe width="100%" height="300" src="//jsfiddle.net/kessy/5ovescub/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/kessy/5ovescub/embedded/js,result/" allowfullscreen="allowfullscreen" ></iframe>
 
 <h2>Additional Resources</h2>
 
@@ -318,6 +320,7 @@ function draw() {
 	<li><a href="http://p5js.org/reference/#group-Shape">Shapes</a> - includes 2D primitives, attributes, curves and complex shapes (vertex)</li>
 	<li><a href="http://p5js.org/reference/#group-Transform">Transform</a></li>
 </ul>
-<a class="btn btn-primary" href="../html/animation.html">Next: Animation</a>
-</body>
+<a class="btn btn-primary" href="../FYP/animation.html">Next: Animation</a>
+	</body>
+	</div>
 </html>
